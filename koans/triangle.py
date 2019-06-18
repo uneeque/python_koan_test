@@ -16,9 +16,30 @@
 # and
 #   about_triangle_project_2.py
 #
+from itertools import permutations
+
 def triangle(a, b, c):
-    # DELETE 'PASS' AND WRITE THIS CODE
-    pass
+    sides = [a, b, c]
+    
+    for side in sides:
+        if side <= 0:
+            raise TriangleError()
+
+    for sideSet in permutations(sides):
+    	if (sideSet[0] + sideSet[1] <=sideSet[2]):
+    		raise TriangleError()
+
+    numUniqSides = len(set(sides)) #do not understand
+
+    if (numUniqSides == 1):
+    	return 'equilateral'
+    elif (numUniqSides == 2):
+    	return 'isosceles'
+    else:
+    	return 'scalene'
+
+    
+
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):
